@@ -8,8 +8,7 @@ So there's no way that we can store all of that information
 away.
 
 And what Turing showed is if you have six operations.
-And those are move left, move right, scan, read, write,
-do nothing.
+And those are move left, move right, scan, print, write, do nothing.
 With just those six primitives, you
 can compute anything that's computable.
 
