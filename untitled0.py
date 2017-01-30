@@ -32,12 +32,14 @@ for num in range(5):
 print(num)
 
 #output 0, 1, 2, 3, 4, 4
+#即使预先赋值了num，依然可以进入for loop
 
 divisor = 2
 for num in range(0, 10, 2):
     print(num/divisor) 
 
 #output 0.0, 1.0, 2.0, 3.0, 4.0
+#a/b = float, a//b = int
 
 for variable in range(20):
     if variable % 4 == 0:
@@ -46,4 +48,7 @@ for variable in range(20):
         print('Foo!') 
 
 #output 0, 'Foo!', 4, 8, 12, 16, 'Foo!'
+#0 % 16 == 0
+
+
 
