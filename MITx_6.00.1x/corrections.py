@@ -101,4 +101,7 @@ def isIn(char, aStr):
    else:
       return isIn(char, aStr[midIndex+1:])
 
+#tuples
+x = (1, 2, (3, 'John', 4), 'Hi')
+x[0:-1] = (1, 2, (3, 'John', 4))
 
