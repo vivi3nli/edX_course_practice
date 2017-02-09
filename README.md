@@ -1,4 +1,7 @@
 # edX_Course_Practice
+Recording all the courses I took on edX
+
+记录我在edX的上课内容
 ##[MIT-6.00.1x](https://github.com/vivi3nli/edX_course_practice/tree/master/MITx_6.00.1x)
 This is an introduction course to CS with python 3.5 编程入门级课程，略有难度，讲解得很清晰。有明确的起止时间，保证了TA的及时性和有效性，每周课件、视频均可下载。
 ###weekly work
