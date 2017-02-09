@@ -20,3 +20,5 @@ gene('','')
 print()
 
 #when it's exceeding 2 genes the output is 2 which is not right
+
+#wanna go to sleep earlier today, maybe not commiting 
