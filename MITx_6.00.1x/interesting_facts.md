@@ -17,6 +17,8 @@ you can compute in any other language,
 and this is a property called Turing complete.
 It's one of the fundamentals of computer science.
 
+The introduction of 'bug' is really a bug in the vacumn tube(by Admiral Grace Murray Hopper, one of the first female programmers)
+
 #Some trickey lib
 str.swapcase()
 Return *a copy of* the string with uppercase characters converted to lowercase and vice versa. Note that it is not necessarily true that s.swapcase().swapcase() == s.
