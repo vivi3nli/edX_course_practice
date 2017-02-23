@@ -125,8 +125,42 @@ def playGame(wordList):
     wordList: list (string)
     """
     # TO DO... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this when you code this function
-
+    #print("playGame not yet implemented.") # <-- Remove this when you code this function
+    this_hand = {}    
+    n = HAND_SIZE
+    while True:
+        cmd = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        while cmd != 'n' and cmd != 'r' and cmd != 'e':
+            print("Invalid command.")
+            print()
+            cmd = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        #first check if the cmd is r, whether this is not the first hand
+        while cmd == 'r' and this_hand == {}:
+            print("You have not played a hand yet. Please play a new hand first!")
+            cmd = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        if cmd == 'e':
+            break
+        else: 
+            cmd1 = input("Enter u to have yourself play, c to have the computer play: ")
+            while cmd1 != 'u' and cmd1 != 'c':
+                print("Invalid command.")
+                print()
+                cmd1 = input("Enter u to have yourself play, c to have the computer play: ")
+            if cmd == 'n':
+                this_hand = dealHand(n)
+                if cmd1 == 'u':
+                    playHand(this_hand, wordList, n)
+                else:
+                    compPlayHand(this_hand, wordList, n)
+            elif cmd == 'r':
+                if this_hand == {}:
+                    print("You have not played a hand yet. Please play a new hand first!")
+                    print()
+                else:
+                    if cmd1 == 'u':
+                        playHand(this_hand, wordList, n)
+                    else:
+                        compPlayHand(this_hand, wordList, n)
         
 #
 # Build data structures used for entire session and play game
