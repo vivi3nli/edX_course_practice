@@ -166,11 +166,13 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    if word == '':
+    if word == '' or word not in wordList:
         return False
+    new_hand = hand.copy()
     for letter in word:
-        if letter not in hand or letter not in wordList:
+        if new_hand.get(letter, 0) == 0:
             return False
+        new_hand[letter] -= 1
     return True
 #
 # Problem #4: Playing a hand
@@ -184,7 +186,10 @@ def calculateHandlen(hand):
     returns: integer
     """
     # TO DO... <-- Remove this comment when you code this function
-
+    length = 0
+    for letter in hand:
+        length += hand[letter]
+    return length
 
 
 def playHand(hand, wordList, n):
@@ -211,34 +216,40 @@ def playHand(hand, wordList, n):
     """
     # BEGIN PSEUDOCODE <-- Remove this comment when you code this function; do your coding within the pseudocode (leaving those comments in-place!)
     # Keep track of the total score
-    
+    total_score = 0
     # As long as there are still letters left in the hand:
-    
+    while calculateHandlen(hand) != 0:
         # Display the hand
-        
+        print("Current Hand: ")
+        displayHand(hand)
         # Ask user for input
-        
+        word = input("Enter word, or a \".\" to indicate that you are finished: ")
         # If the input is a single period:
-        
+        if word == '.':
             # End the game (break out of the loop)
-
+            break
             
         # Otherwise (the input is not a single period):
-        
+        else:
             # If the word is not valid:
-            
+            if not isValidWord(word, hand, wordList):
                 # Reject invalid word (print a message followed by a blank line)
-
+                print("Invalid word, please try again.")
+                print()
             # Otherwise (the word is valid):
-
+            else:
                 # Tell the user how many points the word earned, and the updated total score, in one line followed by a blank line
-                
+                total_score += getWordScore(word, n)
+                print("\"" + word + "\" earned " + str(getWordScore(word, n)) + " points. Total: " + str(total_score) + " points")
+                print()
                 # Update the hand 
-                
+                hand = updateHand(hand, word)
 
     # Game is over (user entered a '.' or ran out of letters), so tell user the total score
-
-
+    if word == '.':
+        print("Goodbye! Total score: " + str(total_score) + " points.")
+    else:
+        print("Run out of letters. Total score: " + str(total_score) + " points.")
 #
 # Problem #5: Playing a game
 # 
@@ -256,10 +267,24 @@ def playGame(wordList):
     2) When done playing the hand, repeat from step 1    
     """
     # TO DO ... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this line when you code the function
-   
-
-
+    #print("playGame not yet implemented.") # <-- Remove this line when you code the function
+    this_hand = {}    
+    n = HAND_SIZE
+    while True:
+        choice = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        if choice == 'n':
+            this_hand = dealHand(n)
+            playHand(this_hand, wordList, n)
+        elif choice == 'r':
+            if this_hand == {}:
+                print("You have not played a hand yet. Please play a new hand first!")
+                print()
+            else:
+                playHand(this_hand, wordList, n)
+        elif choice == 'e':
+            break
+        else:
+            print("Invalid command.")
 
 #
 # Build data structures used for entire session and play game
