@@ -1,8 +1,3 @@
-
-# edX_Course_Practice
-Recording all the courses I took on edX
-
-记录我在edX的上课内容
 ##[MIT-6.00.1x](https://github.com/vivi3nli/edX_course_practice/tree/master/MITx_6.00.1x)
 This is an introduction course to CS with python 3.5 
 
