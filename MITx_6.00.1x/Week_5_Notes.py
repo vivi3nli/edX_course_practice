@@ -22,7 +22,25 @@ class Person(object):
         """
         set self's birthday to birthDate
         """
+        self.birthday = datetime.date(year,month,day)
+
+    def getAge(self):
+        """
+        returns self's current age in days
+        """
+        if self.birthday == None:
+            raise ValueError
+        return (datetime.date.today() - self.birthday).days
         
+    def __lt__(self, other):
+        """
+        return True if self's name is lexicographically
+        less than other's name, and False otherwise
+        """
+        if self.lastName == other.name:
+            return self.name < other.name
+        return self.lastName < other.lastName
+
     def __str__(self):
         """
         return self's name
@@ -34,4 +52,38 @@ class Person(object):
         return self.name
         
         
-class MITPerson(Person)
+class MITPerson(Person):
+    """
+    nextIdNum is a data attributes that's built in to
+    the class, not belonging to any instance but belongs 
+    to the class
+    """
+    nextIdNum = 0 # next ID number to assign
+    
+    def __init__(self, name):
+        Person.__init__(self, name) #initialize Person attribute
+        self.idNum = MITPerson.nextIdNum #MITPerson attribute: unique ID
+        MITPerson.nextIdNum += 1
+        
+    def getIdNum(self):
+        return self.idNum
+    
+    def __lt__(self, other):
+    """
+    sort MIT people use their ID number, not name
+    
+    eg:
+        p1 < p2
+        will be converted into p1.__lt__(p2)
+        thus if p2 isn't a MITPerson there'll be an error
+    """
+        return self.idNum < other.idNum
+    
+    def speak(self, utterance):
+    """
+    returns a string that can be printed
+    
+    every child class inherited the methods of parent class,
+    while parent class cannot reach child class
+    """
+        return (self.getLastName() + " says:" + utterance)
